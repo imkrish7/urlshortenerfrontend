@@ -88,7 +88,6 @@ const ShortenerForm: FC<IProps> = ({
 											<FormControl>
 												<Input
 													type="url"
-													pattern="https://*.*"
 													required
 													placeholder="example.com"
 													{...field}
