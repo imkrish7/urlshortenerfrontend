@@ -1,69 +1,45 @@
-# React + TypeScript + Vite
+A React.js frontend built with TypeScript, Tailwind CSS, and Shadcn UI, providing a clean and user-friendly interface to create, manage, and track shortened URLs. It integrates seamlessly with the backend APIs for real-time URL management and analytics.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Frontend Setup Guide
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
 
-## Expanding the ESLint configuration
+### Programming Languages, Frameworks, and Tools
+- Node.js
+- TypeScript
+- React.js
+- Shadcn
+- Tailwind CSS
+- VSCode (anything of your liking)
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Steps to Run the Frontend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. Install Prerequisites
+- Make sure **NODEJS** is installed
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Clone the Repository
+```bash
+git clone <your-repo-url>
+cd <your-project-folder>
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Install dependencies
+```bash
+npm install
+# or
+yarn
 ```
+### 3. ENVIRONMENT VARIABLE REQUIRED
+For this project, for now, if you want to attach a different PostgreSQL server,  it would need to push the migration
+``` env
+VITE_BACKEND_URI=http://localhost:8080/shortener
+```
+### 6. Run the app in dev mode
+```bash
+npm run dev
+# or
+yarn dev
+```
+After starting the development server, you can access the application at:
+## http://localhost:5173 
