@@ -11,7 +11,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useState, useTransition, type FC } from "react";
+import { useEffect, useState, useTransition, type FC } from "react";
 import { checkAvailabilityAction } from "@/actions";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
@@ -66,6 +66,12 @@ const ShortenerForm: FC<IProps> = ({
 			}
 		});
 	};
+
+	useEffect(() => {
+		if (code) {
+			setIsCodeAvaialble(null);
+		}
+	}, [code]);
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(handleSubmit)}>
