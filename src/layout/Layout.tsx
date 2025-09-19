@@ -1,6 +1,11 @@
+import { Separator } from "@/components/ui/separator";
 import { AppSidebar } from "./app-sidebar";
 
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import {
+	SidebarInset,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
 
 export default function Layout() {
@@ -9,6 +14,11 @@ export default function Layout() {
 			<AppSidebar />
 			<SidebarInset>
 				<header className="bg-background sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
+					<SidebarTrigger className="-ml-1" />
+					<Separator
+						orientation="vertical"
+						className="mr-2 data-[orientation=vertical]:h-4"
+					/>
 					<h1 className="scroll-m-20 text-3xl font-bold tracking-tight text-balance">
 						Shortener
 					</h1>

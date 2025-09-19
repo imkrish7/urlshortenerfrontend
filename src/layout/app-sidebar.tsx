@@ -11,7 +11,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 const navigation = [
 	{
@@ -20,18 +20,16 @@ const navigation = [
 		title: "Dashboard",
 	},
 	{
-		path: "/analysis",
+		path: "#",
 		icon: ChartSpline,
 		title: "Analysis",
 	},
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+	const router = useNavigate();
 	return (
-		<Sidebar
-			collapsible="none"
-			className="w-[calc(var(--sidebar-width-icon)+1px)]! border-r h-[100vh] overflow-hidden"
-		>
+		<Sidebar collapsible="icon" {...props}>
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
@@ -43,14 +41,6 @@ export function AppSidebar() {
 							<a href="#">
 								<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
 									<Command className="size-4" />
-								</div>
-								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-medium">
-										Acme Inc
-									</span>
-									<span className="truncate text-xs">
-										Enterprise
-									</span>
 								</div>
 							</a>
 						</SidebarMenuButton>
@@ -64,16 +54,13 @@ export function AppSidebar() {
 							{navigation.map((item) => (
 								<SidebarMenuItem key={item.title}>
 									<SidebarMenuButton
-										tooltip={{
-											children: item.title,
-											hidden: false,
-										}}
 										className="px-2.5 md:px-2"
+										onClick={() => {
+											router(item.path);
+										}}
 									>
-										<Link to={item.path}>
-											<item.icon />
-											{/* <span>{item.title}</span> */}
-										</Link>
+										<item.icon />
+										<span>{item.title}</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 							))}
