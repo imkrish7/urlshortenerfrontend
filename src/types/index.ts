@@ -11,6 +11,19 @@ export interface ShortendURL {
 	clicks?: string;
 }
 
+export interface AllURLResponse {
+	data: ShortendURL[];
+	cursor?: string;
+}
+
+export interface Filter {
+	page: number;
+	cursor: string;
+	farword: boolean;
+	limit: number;
+	search: string;
+}
+
 export interface ValidateOwnerResponse {
 	message: string;
 }
