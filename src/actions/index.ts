@@ -1,6 +1,8 @@
 import { client } from "@/api";
 import type { CreateSchema } from "@/schema";
 import type {
+	AllURLResponse,
+	Filter,
 	IAvailabilityCheckResponse,
 	ShortendURL,
 	ValidateOwnerResponse,
@@ -25,16 +27,20 @@ export const createShortenURLAction = async (
 	return result.data;
 };
 
-export const fetchShortenURLsAction = async (
-	page: number = 1,
-	limit: number = 10
-): Promise<ShortendURL[]> => {
+export const fetchShortenURLsAction = async ({
+	page = 1,
+	cursor,
+	farword = true,
+	limit = 10,
+}: Filter): Promise<AllURLResponse> => {
 	const url = "/all";
 	const query = new URLSearchParams();
 	query.append("page", page.toString());
 	query.append("limit", limit.toString());
+	query.append("cursor", cursor);
+	query.append("isFarword", farword.toString());
 	const response = await client.get(`${url}?${query.toString()}`);
-	return response.data.data;
+	return response.data;
 };
 
 export const fetchShortendURLAction = async (
