@@ -12,7 +12,7 @@ import { AxiosError } from "axios";
 import { fetchShortenURLsAction } from "@/actions";
 import { Skeleton } from "./ui/skeleton";
 import type { ShortendURL } from "@/types";
-import { TableActionColumns } from "./TableActionColumns";
+import URLTableRow from "./URLTableRow";
 
 const URLList = () => {
 	const [isLoading, startTransition] = useTransition();
@@ -56,24 +56,11 @@ const URLList = () => {
 				{shortendURL.length > 0 ? (
 					shortendURL.map((shortendURL, index) => {
 						return (
-							<TableRow key={index}>
-								<TableCell>{shortendURL.ownerEmail}</TableCell>
-								<TableCell>{shortendURL.originalURL}</TableCell>
-								<TableCell>
-									<a
-										href={shortendURL.shortenURL}
-										target="__blank"
-										className="px-2 py-1 rounded-md text-blue-400 font-semibold text-center"
-									>
-										View
-									</a>
-								</TableCell>
-								<TableCell>{shortendURL.clicks ?? 0}</TableCell>
-								<TableActionColumns
-									deleteURL={deleteURL}
-									colData={shortendURL}
-								/>
-							</TableRow>
+							<URLTableRow
+								shortendURL={shortendURL}
+								key={index}
+								deleteURL={deleteURL}
+							/>
 						);
 					})
 				) : (
