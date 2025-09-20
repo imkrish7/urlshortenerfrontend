@@ -42,41 +42,48 @@ export const FilterByFields: FC<IProps> = ({ updateFilter, clearFilter }) => {
 	}
 
 	return (
-		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="w-2/3 space-y-6 flex items-center gap-2"
-			>
-				<FormField
-					control={form.control}
-					name="filter"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Filter</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="Filter by email"
-									{...field}
-								/>
-							</FormControl>
+		<div className="flex flex-col">
+			<p className="text-gray-500">
+				You can filter records by originalURL, shortCode, and with your
+				email
+			</p>
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="w-2/3 space-y-6 flex items-center gap-2"
+				>
+					<FormField
+						control={form.control}
+						name="filter"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Filter</FormLabel>
+								<FormControl>
+									<Input
+										placeholder="Filter by email"
+										{...field}
+									/>
+								</FormControl>
 
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<div className="flex gap-2">
-					<Button type="submit">Filter</Button>
-					<Button
-						onClick={() => {
-							clearFilter();
-						}}
-						type="button"
-						variant={"outline"}
-					>
-						Clear
-					</Button>
-				</div>
-			</form>
-		</Form>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<div className="flex gap-2">
+						<Button type="submit">Filter</Button>
+						<Button
+							onClick={() => {
+								clearFilter();
+							}}
+							type="button"
+							variant={"outline"}
+						>
+							Clear
+						</Button>
+					</div>
+				</form>
+			</Form>
+		</div>
 	);
 };
