@@ -14,10 +14,11 @@ import { Skeleton } from "./ui/skeleton";
 import type { ShortendURL } from "@/types";
 import URLTableRow from "./URLTableRow";
 import { TablePagination } from "./TablePagination";
+import { FilterByFields } from "./FilterByFields";
 
 const URLList = () => {
 	const [pageNumber, setPageNumber] = useState<number>(1);
-
+	const [filter, setFilter] = useState("");
 	const [farword, setFarword] = useState<boolean>(true);
 	const cursor = useRef<string>("");
 	const [isLoading, startTransition] = useTransition();
@@ -32,6 +33,7 @@ const URLList = () => {
 					cursor: cursor.current,
 					farword,
 					limit,
+					search: filter,
 				});
 				if (response) {
 					setShortendURLs([...response.data]);
@@ -47,7 +49,7 @@ const URLList = () => {
 				}
 			}
 		});
-	}, [pageNumber, cursor, farword]);
+	}, [pageNumber, cursor, farword, filter]);
 
 	const deleteURL = (shortCode: string) => {
 		setShortendURLs((prev) => [
@@ -58,8 +60,21 @@ const URLList = () => {
 		setPageNumber(page);
 		setFarword(page > pageNumber);
 	};
+	const updateFilter = (filterSearch: string) => {
+		setFilter(filterSearch);
+		cursor.current = "";
+	};
+
+	const clearFilter = () => {
+		updateFilter("");
+	};
+
 	return (
 		<div className="flex flex-col">
+			<FilterByFields
+				updateFilter={updateFilter}
+				clearFilter={clearFilter}
+			/>
 			<Table>
 				<TableHeader>
 					<TableRow>

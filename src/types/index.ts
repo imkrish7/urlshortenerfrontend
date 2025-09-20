@@ -21,6 +21,7 @@ export interface Filter {
 	cursor: string;
 	farword: boolean;
 	limit: number;
+	search: string;
 }
 
 export interface ValidateOwnerResponse {

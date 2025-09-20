@@ -32,6 +32,7 @@ export const fetchShortenURLsAction = async ({
 	cursor,
 	farword = true,
 	limit = 10,
+	search = "",
 }: Filter): Promise<AllURLResponse> => {
 	const url = "/all";
 	const query = new URLSearchParams();
@@ -39,6 +40,7 @@ export const fetchShortenURLsAction = async ({
 	query.append("limit", limit.toString());
 	query.append("cursor", cursor);
 	query.append("isFarword", farword.toString());
+	query.append("search", search);
 	const response = await client.get(`${url}?${query.toString()}`);
 	return response.data;
 };
